@@ -4,7 +4,7 @@
   <div class="container">
       @include('common.notification')
       <h2>{{ trans('authors.authorslist') }}</h2>
-      <a href="" class="btn btn-primary float-right">{{ trans('authors.newauthor')}}</a>
+      <a href="{{Route('authors.create')}}" class="btn btn-primary float-right">{{ trans('authors.newauthor')}}</a>
       <table class="table">
         <thead>
           <tr>
@@ -19,7 +19,7 @@
             <td>{{$key + 1}}</td>
             <td>{{$author->name}}</td>
             <td>
-              <a href="" class="btn btn-success">{{ trans('common.edit') }}</a>
+              <a href="{{route('authors.edit', ['author' => $author->id,])}}" class="btn btn-success">{{ trans('common.edit') }}</a>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$author->id}}">{{ trans('common.delete') }}</button>
               <div class="modal" id="myModal{{$author->id}}">
                 <div class="modal-dialog">
@@ -28,7 +28,7 @@
                       {{ trans('common.sure') }}
                     </div>
                     <div class="modal-footer">
-                      <form action="" method="post">
+                      <form action="{{route('authors.destroy', ['author' => $author->id],)}}" method="post">
                         {{ csrf_field() }}
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">{{ trans('common.delete') }}</button>

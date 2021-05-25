@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
-
+use App\Http\Requests\AuthorsRequest;
+use App\Repositories\Authors\AuthorRepositoryInterface;
 class AuthorsController extends Controller
 {
+    protected $authorRepo;
+
+    public function __construct(AuthorRepositoryInterface $authorRepo)
+    {
+        $this->authorRepo = $authorRepo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,18 +33,31 @@ class AuthorsController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('authors.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\AuthorsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AuthorsRequest $request)
     {
-        //
+        $data= $request->all();
+        $author = Author::create([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+        if ($author) {
+
+            return redirect()->route('authors.index')->with('success', trans('authors.successcreate'));
+        } else {
+            
+            return redirect()->route('authors.index')->with('error', trans('authors.failcreate'));
+        }
+        
     }
 
     /**
@@ -59,19 +79,40 @@ class AuthorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $author = $this->authorRepo->getById($id);
+        if ($author) {
+
+            return view('authors.edit', compact('author'));
+        } else {
+            
+            return redirect()->route('authors.index')->with('error', trans('authors.noexitauthor'));
+        }
+
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\AuthorsRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AuthorsRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $author = $this->authorRepo->getById($id);
+
+        if ($author) {
+            $author->name = $data['name'];
+            $author->description = $data['description'];
+            $author->save();
+
+            return redirect()->route('authors.index')->with('success', trans('authors.updatesuccess'));
+        } else {
+
+            return redirect()->route('authors.index')->with('error', trans('authors.noexitauthor'));
+        }
     }
 
     /**
@@ -82,6 +123,15 @@ class AuthorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $author = $this->authorRepo->getById($id);
+        if ($author) {
+            $author->delete_flag = true;
+            $author->save();
+
+            return redirect()->route('authors.index')->with('success', trans('authors.deletesuccess'));
+        } else {
+
+            return redirect()->route('authors.index')->with('error', trans('authors.noexitauthor'));
+        }
     }
 }

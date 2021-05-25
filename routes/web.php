@@ -18,7 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => '{locale}'], function() {
-    config(['app.locale' => Request::segment(1)]);
+Route::group([], function() {
     Route::resource('authors', AuthorsController::class);
 });

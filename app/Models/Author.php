@@ -11,8 +11,8 @@ class Author extends Model
 
     protected $fillable = [
         'name',
-        'email',
-        'password',
+        'description',
+        'delete_flag',
     ];
 
 }

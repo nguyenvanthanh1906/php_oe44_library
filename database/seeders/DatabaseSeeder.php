@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Author;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        (new Author)->factory(30)->create();
+        $this->call([
+            AuthorSeeder::class,
+            PuplisherSeeder::class,
+        ]);
     }
 }

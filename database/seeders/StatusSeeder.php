@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Puplisher;
+use App\Models\Status;
 use App\Models\Book;
 
-class PuplisherSeeder extends Seeder
+class StatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class PuplisherSeeder extends Seeder
      */
     public function run()
     {
-        (new Puplisher)->factory(30)->create();
+        (new Status)->factory(30)->create();
     }
 }

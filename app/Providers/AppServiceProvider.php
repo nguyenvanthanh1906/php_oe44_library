@@ -22,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Puplishers\PuplisherRepositoryInterface::class,
             \App\Repositories\Puplishers\PuplisherRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Statuses\StatusRepositoryInterface::class,
+            \App\Repositories\Statuses\StatusRepository::class
+        );
     }
 
     /**

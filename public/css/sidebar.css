@@ -23,7 +23,7 @@ body {
   .sidebar a.active {
     background-color: #04AA6D;
     color: white;
-    cursor: none;
+    pointer-events: none;
   }
   
   .sidebar a:hover:not(.active) {
@@ -53,3 +53,7 @@ body {
       float: none;
     }
 }
+
+  .error {
+    color: red;
+  } 

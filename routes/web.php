@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\StatusesController;
 use App\Http\Controllers\LanguageController;
 
 /*
@@ -21,5 +22,6 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'locale'], function() {
     Route::resource('authors', AuthorsController::class);
+    Route::resource('statuses', StatusesController::class);
     Route::get('change-language/{language}', [LanguageController::class, 'changeLanguage'])->name('user.change-language');
 });

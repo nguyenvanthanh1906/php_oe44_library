@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Http\Requests\AuthorsRequest;
 use App\Repositories\Authors\AuthorRepositoryInterface;
+
 class AuthorsController extends Controller
 {
     protected $authorRepo;
@@ -87,8 +88,6 @@ class AuthorsController extends Controller
             
             return redirect()->route('authors.index')->with('error', trans('authors.noexitauthor'));
         }
-
-        
     }
 
     /**

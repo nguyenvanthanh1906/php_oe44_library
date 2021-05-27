@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorsController;
 use App\Http\Controllers\PuplishersController;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group([], function() {
+Route::group(['middleware' => 'locale'], function() {
     Route::resource('authors', AuthorsController::class);
     Route::resource('puplishers', PuplishersController::class);
-
+    Route::get('change-language/{language}', [LanguageController::class, 'changeLanguage'])->name('user.change-language');
 });

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Puplisher;
 use App\Models\Status;
+use App\Models\Category;
 
 class Book extends Model
 {
@@ -16,7 +17,6 @@ class Book extends Model
         'amount',
         'puplisher_id',
         'status_id',
-        'delete_flag',
     ];
 
     public function puplisher()
@@ -29,5 +29,11 @@ class Book extends Model
     {
 
         return $this->belongsTo(Status::class, 'status_id');
+    }
+
+    public function categories()
+    {
+
+        return $this->belongsTo(Category::class, 'book_categories');
     }
 }

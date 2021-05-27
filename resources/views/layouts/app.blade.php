@@ -12,6 +12,7 @@
 </head>
 <body>
     @include('common.sidebar', ['page' => $page])
+    @include('common.language')
     @yield('content')
 </body>
 </html>

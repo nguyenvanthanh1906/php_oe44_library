@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Book;
 
-class Puplisher extends Model
+class Status extends Model
 {
     use HasFactory;
 
@@ -20,5 +20,4 @@ class Puplisher extends Model
 
         return $this->hasMany(Book::class);
     }
-
 }

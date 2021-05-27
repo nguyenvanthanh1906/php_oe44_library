@@ -18,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Authors\AuthorRepositoryInterface::class,
             \App\Repositories\Authors\AuthorRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Statuses\StatusRepositoryInterface::class,
+            \App\Repositories\Statuses\StatusRepository::class
+        );
     }
 
     /**

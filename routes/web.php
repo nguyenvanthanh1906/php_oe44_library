@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorsController;
+use App\Http\Controllers\StatusesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,5 @@ Route::get('/', function () {
 
 Route::group([], function() {
     Route::resource('authors', AuthorsController::class);
+    Route::resource('statuses', StatusesController::class);
 });

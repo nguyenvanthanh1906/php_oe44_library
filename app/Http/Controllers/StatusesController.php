@@ -23,7 +23,7 @@ class StatusesController extends Controller
     {
         $statuses = (new Status)->where('delete_flag', false)->paginate(config('app.limit'));
 
-        return view('statuses.index', compact('statuses'));
+        return view('admin.statuses.index', compact('statuses'));
     }
 
     /**
@@ -34,7 +34,7 @@ class StatusesController extends Controller
     public function create()
     {
         
-        return view('statuses.create');
+        return view('admin.statuses.create');
     }
 
     /**
@@ -80,7 +80,7 @@ class StatusesController extends Controller
         $status = $this->statusRepo->getById($id);
         if ($status ) {
 
-            return view('statuses.edit', compact('status'));
+            return view('admin.statuses.edit', compact('status'));
         } else {
             
             return redirect()->route('statuses.index')->with('error', trans('statuses.noexitstatus'));

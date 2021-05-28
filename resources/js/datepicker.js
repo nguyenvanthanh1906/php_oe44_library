@@ -1,0 +1,2 @@
+$('#datepickerpay').datepicker();
+$('#datepickerborrow').datepicker();

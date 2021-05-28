@@ -10,8 +10,9 @@ class CBooksController extends Controller
 {
     public function index()
     {   
-        $books = (new Book)->paginate(config('app.limit'));
+        $books = (new Book)->paginate(config('app.limit_client'));
 
         return view('client.books.index', compact('books'));
     }
+
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Http\Requests\AuthorsRequest;
 use App\Repositories\Authors\AuthorRepositoryInterface;
+
 class AuthorsController extends Controller
 {
     protected $authorRepo;
@@ -23,7 +24,7 @@ class AuthorsController extends Controller
     {   
         $authors = (new Author)->where('delete_flag', false)->paginate(config('app.limit'));
 
-        return view('authors.index', compact('authors'));
+        return view('admin.authors.index', compact('authors'));
     }
 
     /**
@@ -34,7 +35,7 @@ class AuthorsController extends Controller
     public function create()
     {
         
-        return view('authors.create');
+        return view('admin.authors.create');
     }
 
     /**
@@ -82,13 +83,11 @@ class AuthorsController extends Controller
         $author = $this->authorRepo->getById($id);
         if ($author) {
 
-            return view('authors.edit', compact('author'));
+            return view('admin.authors.edit', compact('author'));
         } else {
             
             return redirect()->route('authors.index')->with('error', trans('authors.noexitauthor'));
         }
-
-        
     }
 
     /**

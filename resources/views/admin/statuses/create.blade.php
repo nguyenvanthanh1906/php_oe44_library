@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'statuses'])
+@extends('admin.layouts.app', ['page' => 'statuses'])
 
 @section('content')
     <div class="container">

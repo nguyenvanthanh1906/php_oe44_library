@@ -24,7 +24,8 @@ class BookFactory extends Factory
 
         return [
             'name' => $this->faker->name(),
-            'amount' => $this->faker->numerify('##')
+            'amount' => $this->faker->numerify('##'),
+            'thumbnail' => $this->faker->imageUrl($width = 118, $height = 210),
         ];
     }
 }

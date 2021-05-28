@@ -24,7 +24,7 @@ class PuplishersController extends Controller
     {
         $puplishers = (new Puplisher)->where('delete_flag', false)->paginate(config('app.limit'));
 
-        return view('puplishers.index', compact('puplishers'));
+        return view('admin.puplishers.index', compact('puplishers'));
     }
 
     /**
@@ -35,7 +35,7 @@ class PuplishersController extends Controller
     public function create()
     {
 
-        return view('puplishers.create');
+        return view('admin.puplishers.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class PuplishersController extends Controller
         $puplisher = $this->puplisherRepo->getById($id);
         if ($puplisher) {
 
-            return view('puplishers.edit', compact('puplisher'));
+            return view('admin.puplishers.edit', compact('puplisher'));
         } else {
             
             return redirect()->route('puplishers.index')->with('error', trans('puplishers.noexitpuplisher'));

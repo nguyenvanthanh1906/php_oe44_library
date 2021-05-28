@@ -1,34 +1,34 @@
-@extends('layouts.app', ['page' => 'statuses'])
+@extends('admin.layouts.app', ['page' => 'puplishers'])
 
 @section('content')
     <div class="container">
         @include('common.notification')
-        <h2>{{ trans('statuses.statuseslist') }}</h2>
-        <a href="{{Route('statuses.create')}}" class="btn btn-primary float-right">{{ trans('statuses.newstatus')}}</a>
+        <h2>{{ trans('puplishers.puplisherslist') }}</h2>
+        <a href="{{Route('puplishers.create')}}" class="btn btn-primary float-right">{{ trans('puplishers.newpuplisher')}}</a>
         <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{ trans('statuses.name') }}</th>
-                    <th>{{ trans('statuses.action') }}</th>
+                    <th>{{ trans('puplishers.name') }}</th>
+                    <th>{{ trans('puplishers.action') }}</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($statuses as $key=>$status)
+                @foreach ($puplishers as $key=>$puplisher)
                 <tr>
                     <td>{{$key + 1}}</td>
-                    <td>{{$status->name}}</td>
+                    <td>{{$puplisher->name}}</td>
                     <td>
-                        <a href="{{route('statuses.edit', ['status' => $status->id,])}}" class="btn btn-success">{{ trans('common.edit') }}</a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$status->id}}">{{ trans('common.delete') }}</button>
-                        <div class="modal" id="myModal{{$status->id}}">
+                        <a href="{{route('puplishers.edit', ['puplisher' => $puplisher->id,])}}" class="btn btn-success">{{ trans('common.edit') }}</a>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{$puplisher->id}}">{{ trans('common.delete') }}</button>
+                        <div class="modal" id="myModal{{$puplisher->id}}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">
                                         {{ trans('common.sure') }}
                                     </div>
                                     <div class="modal-footer">
-                                        <form action="{{route('statuses.destroy', ['status' => $status->id],)}}" method="post">
+                                        <form action="{{route('puplishers.destroy', ['puplisher' => $puplisher->id],)}}" method="post">
                                             {{ csrf_field() }}
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{ trans('common.delete') }}</button>
@@ -42,6 +42,6 @@
                 @endforeach
             </tbody>
         </table>
-            {{$statuses->links()}}
+        {{$puplishers->links()}}
     </div>
 @endsection

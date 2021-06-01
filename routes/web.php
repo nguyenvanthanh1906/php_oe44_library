@@ -35,3 +35,4 @@ Route::group(['middleware' => 'locale', 'prefix' => 'admin'], function() {
 
 Route::get('all-books', [CBooksController::class, 'index'])->name('client.books');
 Route::get('request/create/{book}', [CRequestsController::class, 'create'])->name('request.create');
+Route::post('request/store', [CRequestsController::class, 'store'])->name('request.store');

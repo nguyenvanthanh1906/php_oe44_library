@@ -4,7 +4,7 @@
     <div class="container">
         @include('common.notification')
         <h2>{{ trans('request.create') }}</h2>
-        <form action="request/store" method="POST" class="form-horizontal">
+        <form action="{{route('request.store')}}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="task" class="col-sm-3 control-label">{{ trans('request.name')}}</label>
@@ -26,13 +26,19 @@
             <div class="form-group">
                 <div class="form-group">
                     <label for="task" class="col-sm-3 control-label">{{ trans('request.borrowday')}}</label>
-                    <input id="datepickerborrow"  />
+                    <input id="datepickerborrow" name="borrowday" />
+                    @error('borrowday')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-group">
                     <label for="task" class="col-sm-3 control-label">{{ trans('request.payday')}}</label>
-                    <input id="datepickerpay"  />
+                    <input id="datepickerpay" name="payday" />
+                    @error('payday')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="form-group">

@@ -8,6 +8,7 @@ use App\Http\Controllers\StatusesController;
 use App\Http\Controllers\LanguageController;
 
 use App\Http\Controllers\client\CBooksController;
+use App\Http\Controllers\client\CRequestsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,6 @@ Route::get('all-books', [CBooksController::class, 'index'])->name('client.books'
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('request/create/{book}', [CRequestsController::class, 'create'])->name('request.create');
+

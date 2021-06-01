@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Puplisher;
 use App\Models\Status;
+use App\Models\Category;
 use App\Models\Author;
 
 class Book extends Model
@@ -34,6 +35,11 @@ class Book extends Model
         return $this->belongsTo(Status::class, 'status_id');
     }
 
+    public function categories()
+    {
+
+        return $this->belongsTo(Category::class, 'book_categories');
+    }
     public function authors()
     {
 

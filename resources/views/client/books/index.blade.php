@@ -10,9 +10,8 @@
                     <div class="card" >
                         <img class="card-img-top" src="{{$book->thumbnail}}" alt="Card image" >
                         <div class="card-body">
-                            <h4 class="card-title">{{$book->name}}</h4>
-                            <p class="card-text">{{$book->author}}</p>
-                            <a href="#" class="btn btn-primary stretched-link">Borrow</a>
+                            <h6 class="card-title">{{$book->name}}</h6>
+                            <a href="/request/create/{{$book->id}}" class="btn btn-primary">Borrow</a>
                         </div>
                     </div>
                 </div>   

@@ -25,7 +25,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => 'locale', 'prefix' => 'admin'], function() {
+Route::group(['middleware' => ['locale', 'isadmin', ], 'prefix' => 'admin'], function() {
     Route::resource('authors', AuthorsController::class);
     Route::resource('books', BooksController::class);
     Route::resource('puplishers', PuplishersController::class);
@@ -34,5 +34,10 @@ Route::group(['middleware' => 'locale', 'prefix' => 'admin'], function() {
 });
 
 Route::get('all-books', [CBooksController::class, 'index'])->name('client.books');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('request/create/{book}', [CRequestsController::class, 'create'])->name('request.create');
 Route::post('request/store', [CRequestsController::class, 'store'])->name('request.store');

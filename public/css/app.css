@@ -32,6 +32,11 @@ body {
     color: white;
     pointer-events: none;
   }
+
+  .sidebar a.active-pointer {
+    background-color: #04AA6D;
+    color: white;
+  }
   
   .sidebar a:hover:not(.active) {
     background-color: #555;

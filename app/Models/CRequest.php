@@ -19,7 +19,6 @@ class CRequest extends Model
         'borrow_day',
         'return_day',
         'is_approve',
-        'delete_flag',
     ];
 
     public function book()

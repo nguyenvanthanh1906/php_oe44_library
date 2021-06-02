@@ -22,7 +22,7 @@ class AuthorsController extends Controller
      */
     public function index()
     {   
-        $authors = (new Author)->where('delete_flag', false)->paginate(config('app.limit'));
+        $authors = (new Author)->paginate(config('app.limit'));
 
         return view('admin.authors.index', compact('authors'));
     }
@@ -124,8 +124,7 @@ class AuthorsController extends Controller
     {
         $author = $this->authorRepo->getById($id);
         if ($author) {
-            $author->delete_flag = true;
-            $author->save();
+            $author->delete();
 
             return redirect()->route('authors.index')->with('success', trans('authors.deletesuccess'));
         } else {

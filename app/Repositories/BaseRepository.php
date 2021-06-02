@@ -22,6 +22,6 @@ abstract class BaseRepository implements RepositoryInterface
     public function getById($id)
     {
 
-        return $this->model->where([['delete_flag', false], ['id', $id]])->first();
+        return $this->model->where('id', $id)->first();
     }
 }

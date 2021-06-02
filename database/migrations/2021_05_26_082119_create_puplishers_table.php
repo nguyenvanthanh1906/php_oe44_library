@@ -16,7 +16,7 @@ class CreatePuplishersTable extends Migration
         Schema::create('puplishers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('delete_flag')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

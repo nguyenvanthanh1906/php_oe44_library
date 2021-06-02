@@ -26,4 +26,5 @@ mix.js(['resources/js/app.js',
         ], 'public/js/datepicker.js')
     .copy(['resources/js/jquery.min.js',
     ], 'public/js/jquery.js');
-mix.copyDirectory('resources/fonts', 'public/fonts')    
+mix.copyDirectory('resources/fonts', 'public/fonts');
+mix.copyDirectory('resources/img', 'public/img');     

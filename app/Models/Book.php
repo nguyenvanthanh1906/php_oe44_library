@@ -9,6 +9,7 @@ use App\Models\Puplisher;
 use App\Models\Status;
 use App\Models\Category;
 use App\Models\Author;
+use App\Models\CRequest;
 
 class Book extends Model
 {
@@ -44,5 +45,10 @@ class Book extends Model
     {
 
         return $this->belongsToMany(Author::class, 'author_books');
+    }
+    public function requests()
+    {
+        
+        return $this->hasMany(CRequest::class);
     }
 }

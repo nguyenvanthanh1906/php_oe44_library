@@ -9,6 +9,7 @@ use App\Http\Controllers\LanguageController;
 
 use App\Http\Controllers\client\CBooksController;
 use App\Http\Controllers\client\CRequestsController;
+use App\Http\Controllers\RequestsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::group(['middleware' => ['locale', 'isadmin', ], 'prefix' => 'admin'], fun
     Route::resource('books', BooksController::class);
     Route::resource('puplishers', PuplishersController::class);
     Route::resource('statuses', StatusesController::class);
+    Route::resource('requests', RequestsController::class)->only('destroy');
+    Route::get('accept/{id}', [RequestsController::class, 'accept'])->name('accept.request');
+    Route::get('all/accepted={isApprove}', [RequestsController::class, 'all'])->name('requests.all');
     Route::get('change-language/{language}', [LanguageController::class, 'changeLanguage'])->name('user.change-language');
 });
 

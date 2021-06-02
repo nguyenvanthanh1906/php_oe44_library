@@ -24,7 +24,13 @@ mix.js(['resources/js/app.js',
         ], 'public/js/gijgo.js')
     .js(['resources/js/datepicker.js',
         ], 'public/js/datepicker.js')
+    .copy(['resources/js/noti.js',
+    ], 'public/js/noti.js')
     .copy(['resources/js/jquery.min.js',
-    ], 'public/js/jquery.js');
+    ], 'public/js/jquery.js')
+    .copy(['resources/js/pusher.js',
+    ], 'public/js/pusher.js')
+    .copy(['resources/js/ajax.js',
+    ], 'public/js/ajax.js');
 mix.copyDirectory('resources/fonts', 'public/fonts');
 mix.copyDirectory('resources/img', 'public/img');     

@@ -6,7 +6,7 @@ use App\Http\Controllers\BooksController;
 use App\Http\Controllers\PuplishersController;
 use App\Http\Controllers\StatusesController;
 use App\Http\Controllers\LanguageController;
-
+use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\client\CBooksController;
 use App\Http\Controllers\client\CRequestsController;
 use App\Http\Controllers\RequestsController;
@@ -24,6 +24,10 @@ use App\Http\Controllers\RequestsController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/admin', function () {
+    return view('admin.home');
 });
 
 Route::group(['middleware' => ['locale', 'isadmin', ], 'prefix' => 'admin'], function() {
@@ -45,3 +49,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('request/create/{book}', [CRequestsController::class, 'create'])->name('request.create');
 Route::post('request/store', [CRequestsController::class, 'store'])->name('request.store');
+Route::post('notification', [NotificationsController::class, 'read'])->name('notifications.read');

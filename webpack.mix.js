@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.styles(['resources/css/bootstrap.min.css',
+        'resources/css/app.css',
         'resources/css/sidebar.css',
         ], 'public/css/app.css')
         .styles(['resources/css/gijgo.min.css',

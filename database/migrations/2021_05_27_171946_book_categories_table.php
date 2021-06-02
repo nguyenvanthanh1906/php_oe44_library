@@ -28,6 +28,6 @@ class BookCategoriesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('book_categories');
     }
 }

@@ -40,4 +40,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('request/create/{book}', [CRequestsController::class, 'create'])->name('request.create');
-
+Route::post('request/store', [CRequestsController::class, 'store'])->name('request.store');

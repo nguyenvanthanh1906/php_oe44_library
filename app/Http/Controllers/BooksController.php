@@ -14,7 +14,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = (new Book)->withTrashed()->with('authors', 'status', 'puplisher')->paginate(config('app.limit'));
+        $books = (new Book)->with('authors', 'status', 'puplisher')->paginate(config('app.limit'));
 
         return view('books.index', compact('books'));
     }

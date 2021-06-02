@@ -21,7 +21,7 @@ class StatusesController extends Controller
      */
     public function index()
     {
-        $statuses = (new Status)->where('delete_flag', false)->paginate(config('app.limit'));
+        $statuses = (new Status)->paginate(config('app.limit'));
 
         return view('admin.statuses.index', compact('statuses'));
     }
@@ -120,8 +120,7 @@ class StatusesController extends Controller
     {
         $status = $this->statusRepo->getById($id);
         if ($status) {
-            $status->delete_flag = true;
-            $status->save();
+            $status->delete();
 
             return redirect()->route('statuses.index')->with('success', trans('statuses.deletesuccess'));
         } else {

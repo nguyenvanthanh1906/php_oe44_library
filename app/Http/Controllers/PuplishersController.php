@@ -22,7 +22,7 @@ class PuplishersController extends Controller
      */
     public function index()
     {
-        $puplishers = (new Puplisher)->where('delete_flag', false)->paginate(config('app.limit'));
+        $puplishers = (new Puplisher)->paginate(config('app.limit'));
 
         return view('admin.puplishers.index', compact('puplishers'));
     }
@@ -121,8 +121,7 @@ class PuplishersController extends Controller
     {
         $puplisher = $this->puplisherRepo->getById($id);
         if ($puplisher) {
-            $puplisher->delete_flag = true;
-            $puplisher->save();
+            $puplisher->delete();
 
             return redirect()->route('puplishers.index')->with('success', trans('puplishers.deletesuccess'));
         } else {

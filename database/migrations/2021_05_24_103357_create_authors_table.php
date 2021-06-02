@@ -17,7 +17,7 @@ class CreateAuthorsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->boolean('delete_flag')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class IsUser
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class IsAdmin
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
-    {   
-        if(Auth::check()) {
-            if(Auth::user()->role_id == 1)
+    {
+        if(Auth::user()) {
+            if(Auth::user()->role_id == 2)
                 {
 
                     return $next($request);
@@ -30,6 +30,5 @@ class IsAdmin
 
             return redirect('/login');
         }
-        
     }
 }

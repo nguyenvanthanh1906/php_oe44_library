@@ -1,4 +1,4 @@
-@extends('client.layouts.app', ['page' => 'puplishers'])
+@extends('client.layouts.app')
 
 @section('content')  
     <div class="container">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CRequest;
+use App\Notifications\CRequestNotification;
+use Pusher\Pusher;
 
 class RequestsController extends Controller
 {
@@ -22,7 +24,7 @@ class RequestsController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $crequest = (new CRequest)->withTrashed()->where('id', $id)->first();
+        $crequest = (new CRequest)->where('id', $id)->first();
         if ($crequest) {
             $crequest->delete();
 
@@ -35,12 +37,28 @@ class RequestsController extends Controller
 
     public function accept($id)
     {
-        $request = (new CRequest)->withTrashed()->where('id', $id)->first();
+        $request = (new CRequest)->where('id', $id)->first();
 
         if($request)
         {
             $request->is_approve = true;
             $request->save();
+
+            $user = $request->user; 
+            $data = ['book' => $request->book->name];
+            $user->notify(new CRequestNotification($data));
+            $options = array(
+                'cluster' => 'ap1',
+                'encrypted' => true
+            );
+            $pusher = new Pusher(
+                env('PUSHER_APP_KEY'),
+                env('PUSHER_APP_SECRET'),
+                env('PUSHER_APP_ID'),
+                $options
+            );
+    
+            $pusher->trigger('NotificationEvent', 'send-message', $data);
             
             return redirect()->back();
         } else {

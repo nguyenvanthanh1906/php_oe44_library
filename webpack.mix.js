@@ -26,6 +26,8 @@ mix.js(['resources/js/app.js',
         ], 'public/js/datepicker.js')
     .copy(['resources/js/noti.js',
     ], 'public/js/noti.js')
+    .copy(['resources/js/noti_client.js',
+    ], 'public/js/noti_client.js')
     .copy(['resources/js/jquery.min.js',
     ], 'public/js/jquery.js')
     .copy(['resources/js/pusher.js',

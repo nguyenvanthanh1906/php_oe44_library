@@ -14,16 +14,10 @@ const mix = require('laravel-mix');
 mix.styles(['resources/css/bootstrap.min.css',
         'resources/css/app.css',
         'resources/css/sidebar.css',
-        ], 'public/css/app.css')
-        .styles(['resources/css/gijgo.min.css',
-            ], 'public/css/gijgo.css');
+        ], 'public/css/app.css');
 mix.js(['resources/js/app.js',
         'resources/js/bootstrap.min.js',
         ], 'public/js/app.js')
-    .js(['resources/js/gijgo.min.js',
-        ], 'public/js/gijgo.js')
-    .js(['resources/js/datepicker.js',
-        ], 'public/js/datepicker.js')
     .copy(['resources/js/noti.js',
     ], 'public/js/noti.js')
     .copy(['resources/js/noti_client.js',

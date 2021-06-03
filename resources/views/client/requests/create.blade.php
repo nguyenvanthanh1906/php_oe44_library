@@ -26,7 +26,7 @@
             <div class="form-group">
                 <div class="form-group">
                     <label for="task" class="col-sm-3 control-label">{{ trans('request.borrowday')}}</label>
-                    <input id="datepickerborrow" name="borrowday" />
+                    <input id="datepickerborrow" name="borrowday" type="date"/>
                     @error('borrowday')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -35,7 +35,7 @@
             <div class="form-group">
                 <div class="form-group">
                     <label for="task" class="col-sm-3 control-label">{{ trans('request.payday')}}</label>
-                    <input id="datepickerpay" name="payday" />
+                    <input id="datepickerpay" name="payday" type="date" />
                     @error('payday')
                         <div class="error">{{ $message }}</div>
                     @enderror

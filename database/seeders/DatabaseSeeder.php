@@ -14,13 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::transaction(function () {
-            $this->call([
-                AuthorSeeder::class,
-            ]);
             $this->call([
                 BookSeeder::class,
             ]);
-        });
     }
 }

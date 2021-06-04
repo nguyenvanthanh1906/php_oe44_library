@@ -10,20 +10,19 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <script src="{{asset('jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/ajax.js')}}"></script>
     <script src="{{asset('js/pusher.js')}}"></script>
+    <script src="{{asset('js/jquery.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/gijgo.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/app.js')}}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
+    <link href="{{asset('css/gijgo.css')}}" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="app">
@@ -96,12 +95,12 @@
         <main class="">
             @include('common.language')
             @yield('content')
+            <script type="text/javascript" src="{{asset('js/datepicker.js')}}"></script>
         </main>
     </div>
     <script type="text/javascript">
         var key = '{{env("PUSHER_APP_KEY")}}'
     </script>
     <script type="text/javascript" src="{{asset('js/noti_client.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/datepicker.js')}}"></script>
 </body>
 </html>

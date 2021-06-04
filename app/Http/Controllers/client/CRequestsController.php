@@ -11,6 +11,7 @@ use App\Notifications\CRequestNotification;
 use App\Models\User;
 use App\Http\Requests\CRequestsRequest;
 use Pusher\Pusher;
+use DB;
 
 class CRequestsController extends Controller
 {
@@ -39,18 +40,23 @@ class CRequestsController extends Controller
 
                 return redirect()->route('client.books')->with('error', trans('requests.exit'));
             } else {
-                $request = CRequest::create([
-                    'book_id' => $request->book,
-                    'user_id' => Auth::id(),
-                    'borrow_day' => $request->borrowday,
-                    'return_day' => $request->payday,
-                    'is_approve' => false,
-                ]);
-                if($request)
-                {
+                $trans = DB::transaction(function () use ($request, $book) {
+                    $crequest = CRequest::create([
+                        'book_id' => $request->book,
+                        'user_id' => Auth::id(),
+                        'borrow_day' => $request->borrowday,
+                        'return_day' => $request->payday,
+                        'is_approve' => false,
+                    ]);
+
                     $book->amount = $book->amount - 1;
                     $book->save();
-
+                    
+                    return $crequest;
+                });
+                
+                if($trans)
+                {
                     $users = (new User)->where('role_id', 1)->get(); 
                     $data = ['user' => Auth::user()->name, 'book' => $book->name];
                     foreach($users as $user)

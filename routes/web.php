@@ -23,14 +23,15 @@ use App\Http\Controllers\RequestsController;
 */
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin.home');
-});
-
 Route::group(['middleware' => ['locale', 'isadmin', ], 'prefix' => 'admin'], function() {
+    Route::get('/', function () {
+
+        return view('admin.home');
+    });
     Route::resource('authors', AuthorsController::class);
     Route::resource('books', BooksController::class);
     Route::resource('puplishers', PuplishersController::class);
@@ -41,12 +42,12 @@ Route::group(['middleware' => ['locale', 'isadmin', ], 'prefix' => 'admin'], fun
     Route::get('change-language/{language}', [LanguageController::class, 'changeLanguage'])->name('user.change-language');
 });
 
+Route::group(['middleware' => ['locale', 'isuser', ]], function() {
+    Route::get('request/create/{book}', [CRequestsController::class, 'create'])->name('request.create');
+    Route::post('request/store', [CRequestsController::class, 'store'])->name('request.store');
+});
+
 Route::get('all-books', [CBooksController::class, 'index'])->name('client.books');
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('request/create/{book}', [CRequestsController::class, 'create'])->name('request.create');
-Route::post('request/store', [CRequestsController::class, 'store'])->name('request.store');
 Route::post('notification', [NotificationsController::class, 'read'])->name('notifications.read');

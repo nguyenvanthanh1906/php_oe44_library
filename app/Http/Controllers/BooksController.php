@@ -16,7 +16,7 @@ class BooksController extends Controller
     {
         $books = (new Book)->with('authors', 'status', 'puplisher')->paginate(config('app.limit'));
 
-        return view('books.index', compact('books'));
+        return view('admin.books.index', compact('books'));
     }
 
     /**

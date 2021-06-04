@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\CurrentDayRule;
+use App\Rules\BorrowDayRule;
+use App\Rules\ReturnDayRule;
 
 class CRequestsRequest extends FormRequest
 {
@@ -27,8 +29,8 @@ class CRequestsRequest extends FormRequest
     {
 
         return [
-            'borrowday' => ['required', new CurrentDayRule()],
-            'payday' => ['required', new CurrentDayRule()],
+            'borrowday' => ['required', new CurrentDayRule(), new BorrowDayRule($this->input('payday')),],
+            'payday' => ['required', new CurrentDayRule(), new ReturnDayRule($this->input('borrowday')),],
         ];
     }
 }

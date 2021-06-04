@@ -18,12 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <script src="{{asset('jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('js/ajax.js')}}"></script>
     <script src="{{asset('js/pusher.js')}}"></script>
+    <script src="{{asset('js/select2.js')}}"></script>
 </head>
 <body>
     <div id="app">

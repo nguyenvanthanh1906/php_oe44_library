@@ -13,6 +13,7 @@
                     <th>{{ trans('books.name') }}</th>
                     <th>{{ trans('books.amount') }}</th>
                     <th>{{ trans('books.status') }}</th>
+                    <th>{{ trans('books.categories')}}</th>
                     <th>{{ trans('books.puplisher') }}</th>
                     <th>{{ trans('books.authors') }}</th>
                     <th>{{ trans('books.action') }}</th>
@@ -26,6 +27,11 @@
                     <td>{{$book->name}}</td>
                     <td>{{$book->amount}}</td>
                     <td>{{$book->status->name}}</td>
+                    <td>
+                        @foreach($book->categories as $cate)
+                            <p>{{$cate->name}}</p>
+                        @endforeach
+                    </td>    
                     <td>{{$book->puplisher->name}}</td>
                     <td>
                         @foreach($book->authors as $author)

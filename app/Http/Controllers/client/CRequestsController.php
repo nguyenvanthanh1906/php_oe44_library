@@ -38,14 +38,14 @@ class CRequestsController extends Controller
             if($exit_request)
             {
 
-                return redirect()->route('client.books')->with('error', trans('requests.exit'));
+                return redirect()->route('client.books')->with('error', trans('request.exit'));
             } else {
                 $trans = DB::transaction(function () use ($request, $book) {
                     $crequest = CRequest::create([
                         'book_id' => $request->book,
                         'user_id' => Auth::id(),
                         'borrow_day' => $request->borrowday,
-                        'return_day' => $request->payday,
+                        'return_day' => $request->returnday,
                         'is_approve' => false,
                     ]);
 
@@ -77,13 +77,14 @@ class CRequestsController extends Controller
             
                     $pusher->trigger('NotificationEvent', 'send-message', $data);
 
-                    return redirect()->route('client.books')->with('success', trans('requests.createsuccess'));
+                    return redirect()->route('client.books')->with('success', trans('request.createsuccess'));
                 } else {
 
                     return redirect()->route('client.books')->with('error', trans('request.createfail'));
                 }
             }
         } else {
+            
             return redirect()->route('client.books')->with('error', trans('books.nobook'));
         }    
 

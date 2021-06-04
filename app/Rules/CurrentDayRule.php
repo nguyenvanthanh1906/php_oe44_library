@@ -38,6 +38,6 @@ class CurrentDayRule implements Rule
     public function message()
     {
 
-        return trans('requests.currentday');
+        return trans('request.notearlythancurrentday');
     }
 }

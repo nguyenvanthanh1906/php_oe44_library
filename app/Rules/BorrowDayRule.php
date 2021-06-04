@@ -37,6 +37,6 @@ class BorrowDayRule implements Rule
     public function message()
     {
 
-        return trans('requests.borrowday');
+        return trans('request.borrowdaynotlately');
     }
 }

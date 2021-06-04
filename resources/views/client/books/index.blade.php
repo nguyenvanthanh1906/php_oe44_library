@@ -1,6 +1,7 @@
 @extends('client.layouts.app')
 
 @section('content')  
+@include('client.common.sidebar', ['categories' => $categories])
     <div class="container">
         @include('common.notification')
         <h2>{{ trans('books.bookslist') }}</h2>
@@ -12,7 +13,7 @@
                         <div class="card-body">
                             <h6 class="card-title">{{$book->name}}</h6>
                             @if($book->amount > 0)
-                                <a href="/request/create/{{$book->id}}" class="btn btn-primary">Borrow</a>
+                                <a href="/request/create/{{$book->id}}" class="btn btn-primary">{{trans('books.borrow')}}</a>
                             @else
                                 <p class="no-book">{{trans('books.nobook')}}</p>
                             @endif

@@ -3,11 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\CurrentDayRule;
-use App\Rules\BorrowDayRule;
-use App\Rules\ReturnDayRule;
 
-class CRequestsRequest extends FormRequest
+class BooksRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +26,12 @@ class CRequestsRequest extends FormRequest
     {
 
         return [
-            'borrowday' => ['required', new CurrentDayRule(), new BorrowDayRule($this->input('returnday')),],
-            'returnday' => ['required', new CurrentDayRule(), new ReturnDayRule($this->input('borrowday')),],
+            'name' => 'required',
+            'amount' => 'required',
+            'status' => 'required',
+            'puplisher' => 'required',
+            'authors' => 'required',
+            'categories' => 'required',
         ];
     }
 }

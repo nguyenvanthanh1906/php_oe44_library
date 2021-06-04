@@ -21,6 +21,7 @@ class CreateBooksTable extends Migration
             $table->integer('status_id');
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE books ADD CONSTRAINT chk_book_amount CHECK (amount >= 0);');
     }
 
     /**

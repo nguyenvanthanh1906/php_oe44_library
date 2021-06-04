@@ -20,7 +20,7 @@ class Category extends Model
     public function books()
     {
 
-        return $this->belongsTo(Book::class, 'book_categories');
+        return $this->belongsToMany(Book::class, 'book_categories');
     }
 
     public function childrent()

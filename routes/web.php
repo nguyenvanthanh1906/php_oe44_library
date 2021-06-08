@@ -23,10 +23,10 @@ use App\Http\Controllers\RequestsController;
 */
 
 Route::get('/', function () {
-    
+
     return view('welcome');
 });
-
+Route::get('change-language/{language}', [LanguageController::class, 'changeLanguage'])->name('user.change-language');
 Route::group(['middleware' => ['locale', 'isadmin', ], 'prefix' => 'admin'], function() {
     Route::get('/', function () {
 
@@ -39,15 +39,17 @@ Route::group(['middleware' => ['locale', 'isadmin', ], 'prefix' => 'admin'], fun
     Route::resource('requests', RequestsController::class)->only('destroy');
     Route::get('accept/{id}', [RequestsController::class, 'accept'])->name('accept.request');
     Route::get('all/accepted={isApprove}', [RequestsController::class, 'all'])->name('requests.all');
-    Route::get('change-language/{language}', [LanguageController::class, 'changeLanguage'])->name('user.change-language');
 });
 
 Route::group(['middleware' => ['locale', 'isuser', ]], function() {
     Route::get('request/create/{book}', [CRequestsController::class, 'create'])->name('request.create');
     Route::post('request/store', [CRequestsController::class, 'store'])->name('request.store');
 });
+Route::group(['middleware' => 'locale'], function() {
+    Route::get('all-books/{category}', [CBooksController::class, 'index'])->name('client.books');
+    Route::get('all-books', [CBooksController::class, 'index'])->name('client.books');
+});
 
-Route::get('all-books', [CBooksController::class, 'index'])->name('client.books');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('notification', [NotificationsController::class, 'read'])->name('notifications.read');

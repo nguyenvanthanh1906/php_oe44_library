@@ -17,10 +17,9 @@ class CRequestsController extends Controller
 {
     public function create(Request $request)
     {
-        $book = (new Book)->find($request->book);
+        $book = Book::find($request->book);
         if($book->amount > 0)
         {
-
             return view('client.requests.create', compact('book'));
         } else {
 
@@ -31,21 +30,21 @@ class CRequestsController extends Controller
     public function store(CRequestsRequest $request)
     {
         $request->all();
-        $exit_request = (new CRequest)->where([['book_id', $request->book], ['user_id', Auth::id()]])->first();
-        $book = (new Book)->where('id', $request->book)->first();
+        $exit_request = CRequest::where([['book_id', $request->book], ['user_id', Auth::id()]])->first();
+        $book = Book::where('id', $request->book)->first();
         if($book->amount > 0)
         {
             if($exit_request)
             {
 
-                return redirect()->route('client.books')->with('error', trans('requests.exit'));
+                return redirect()->route('client.books')->with('error', trans('request.exit'));
             } else {
                 $trans = DB::transaction(function () use ($request, $book) {
                     $crequest = CRequest::create([
                         'book_id' => $request->book,
                         'user_id' => Auth::id(),
                         'borrow_day' => $request->borrowday,
-                        'return_day' => $request->payday,
+                        'return_day' => $request->returnday,
                         'is_approve' => false,
                     ]);
 
@@ -57,7 +56,7 @@ class CRequestsController extends Controller
                 
                 if($trans)
                 {
-                    $users = (new User)->where('role_id', 1)->get(); 
+                    $users = User::where('role_id', 1)->get(); 
                     $data = ['user' => Auth::user()->name, 'book' => $book->name];
                     foreach($users as $user)
                     {
@@ -74,19 +73,19 @@ class CRequestsController extends Controller
                         env('PUSHER_APP_ID'),
                         $options
                     );
-            
+
                     $pusher->trigger('NotificationEvent', 'send-message', $data);
 
-                    return redirect()->route('client.books')->with('success', trans('requests.createsuccess'));
+                    return redirect()->route('client.books')->with('success', trans('request.createsuccess'));
                 } else {
 
                     return redirect()->route('client.books')->with('error', trans('request.createfail'));
                 }
             }
         } else {
+
             return redirect()->route('client.books')->with('error', trans('books.nobook'));
         }    
-
 
     }
 }

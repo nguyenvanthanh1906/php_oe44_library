@@ -1,9 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/js/gijgo.js": "/js/gijgo.js",
-    "/js/datepicker.js": "/js/datepicker.js",
     "/css/app.css": "/css/app.css",
-    "/css/gijgo.css": "/css/gijgo.css",
     "/js/noti.js": "/js/noti.js",
     "/js/noti_client.js": "/js/noti_client.js",
     "/js/jquery.js": "/js/jquery.js",

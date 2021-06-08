@@ -1842,6 +1842,10 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+$(document).ready(function () {
+  $('.js-example-basic-single').select2();
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

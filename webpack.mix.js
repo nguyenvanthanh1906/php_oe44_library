@@ -11,22 +11,27 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.styles(['resources/css/bootstrap.min.css',
-        'resources/css/app.css',
-        'resources/css/sidebar.css',
-        ], 'public/css/app.css');
+ mix.styles(['resources/css/bootstrap.min.css',
+ 'resources/css/app.css',
+ 'resources/css/sidebar.css',
+ 'resources/css/select2.css',
+ ], 'public/css/app.css');
 mix.js(['resources/js/app.js',
-        'resources/js/bootstrap.min.js',
-        ], 'public/js/app.js')
-    .copy(['resources/js/noti.js',
-    ], 'public/js/noti.js')
-    .copy(['resources/js/noti_client.js',
-    ], 'public/js/noti_client.js')
-    .copy(['resources/js/jquery.min.js',
-    ], 'public/js/jquery.js')
-    .copy(['resources/js/pusher.js',
-    ], 'public/js/pusher.js')
-    .copy(['resources/js/ajax.js',
-    ], 'public/js/ajax.js');
+ 'resources/js/bootstrap.min.js',
+ ], 'public/js/app.js')
+.copy(['resources/js/noti.js',
+], 'public/js/noti.js')
+.copy(['resources/js/thumbnail.js',
+], 'public/js/thumbnail.js')
+.copy(['resources/js/select2.js',
+], 'public/js/select2.js')
+.copy(['resources/js/noti_client.js',
+], 'public/js/noti_client.js')
+.copy(['resources/js/jquery.min.js',
+], 'public/js/jquery.js')
+.copy(['resources/js/pusher.js',
+], 'public/js/pusher.js')
+.copy(['resources/js/ajax.js',
+], 'public/js/ajax.js');
 mix.copyDirectory('resources/fonts', 'public/fonts');
-mix.copyDirectory('resources/img', 'public/img');     
+mix.copyDirectory('resources/img', 'public/img');   

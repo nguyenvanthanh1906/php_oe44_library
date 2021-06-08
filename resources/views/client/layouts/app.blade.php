@@ -19,10 +19,8 @@
     <script src="{{asset('js/ajax.js')}}"></script>
     <script src="{{asset('js/pusher.js')}}"></script>
     <script src="{{asset('js/jquery.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/gijgo.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/app.js')}}" type="text/javascript"></script>
     <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
-    <link href="{{asset('css/gijgo.css')}}" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="app">

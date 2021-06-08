@@ -23,7 +23,7 @@ class PuplisherFactory extends Factory
     {
         
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->text(12),
         ];
     }
 }

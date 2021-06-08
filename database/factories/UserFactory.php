@@ -24,10 +24,11 @@ class UserFactory extends Factory
     {
 
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'role_id' => 1,
+            'password' => bcrypt('12345678'), // password
             'remember_token' => Str::random(10),
         ];
     }
@@ -41,6 +42,7 @@ class UserFactory extends Factory
     {
         
         return $this->state(function (array $attributes) {
+            
             return [
                 'email_verified_at' => null,
             ];

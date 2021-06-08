@@ -19,7 +19,6 @@ class CRequestsRequest extends FormRequest
 
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -29,8 +28,8 @@ class CRequestsRequest extends FormRequest
     {
 
         return [
-            'borrowday' => ['required', new CurrentDayRule(), new BorrowDayRule($this->input('payday')),],
-            'payday' => ['required', new CurrentDayRule(), new ReturnDayRule($this->input('borrowday')),],
+            'borrowday' => ['required', new CurrentDayRule(), new BorrowDayRule($this->input('returnday')),],
+            'returnday' => ['required', new CurrentDayRule(), new ReturnDayRule($this->input('borrowday')),],
         ];
     }
 }

@@ -37,6 +37,6 @@ class ReturnDayRule implements Rule
     public function message()
     {
 
-        return trans('requests.returnday');
+        return trans('request.returndaynotearly');
     }
 }

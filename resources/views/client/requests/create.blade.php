@@ -1,5 +1,4 @@
 @extends('client.layouts.app')
-
 @section('content')  
     <div class="container">
         @include('common.notification')
@@ -7,14 +6,14 @@
         <form action="{{route('request.store')}}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             <div class="form-group">
-                <label for="task" class="col-sm-3 control-label">{{ trans('request.name')}}</label>
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-2">
                             <img src="{{$book->thumbnail}}" alt="">
                         </div>
                         <div class="col-sm-10">
-                            Book name : <h4>{{$book->name}}</h4>
+                            <h4>{{trans('request.bookname')}} : </h4><p>{{$book->name}}</p>
+                            <h4>{{trans('books.authors')}} : </h4>
                             @foreach($book->authors as $author)
                                 <p>{{$author->name}}</p>
                             @endforeach
@@ -34,9 +33,9 @@
             </div>
             <div class="form-group">
                 <div class="form-group">
-                    <label for="task" class="col-sm-3 control-label">{{ trans('request.payday')}}</label>
-                    <input id="datepickerpay" name="payday" type="date" />
-                    @error('payday')
+                    <label for="task" class="col-sm-3 control-label">{{ trans('request.returnday')}}</label>
+                    <input id="datepickerpay" name="returnday" type="date" />
+                    @error('returnday')
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>

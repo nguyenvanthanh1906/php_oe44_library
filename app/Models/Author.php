@@ -13,7 +13,6 @@ class Author extends Model
     protected $fillable = [
         'name',
         'description',
-        'delete_flag',
     ];
 
     public function books()

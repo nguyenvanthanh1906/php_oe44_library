@@ -51,8 +51,8 @@ class BooksController extends Controller
         $data = $request->all();
         $thumbnail=$request->thumbnail;
         $thumbnail_name=$thumbnail->getClientOriginalName();
-        $thumbnail->move('img',$thumbnail_name);
-        $trans = DB::transaction(function () use ($request) {
+        $thumbnail->move('cimg',$thumbnail_name);
+        $trans = DB::transaction(function () use ($request, $thumbnail_name) {
             $book = Book::create([
                 'name' => $request->name,
                 'amount' => $request->amount,
@@ -124,14 +124,14 @@ class BooksController extends Controller
             if($request->thumbnail){
                 $thumbnail=$request->thumbnail;
                 $thumbnail_name=$thumbnail->getClientOriginalName();
-                $thumbnail->move('img',$thumbnail_name);
+                $thumbnail->move('cimg',$thumbnail_name);
                 DB::beginTransaction();
                 try {
                     $book->name = $request->name;
                     $book->amount = $request->amount;
                     $book->status_id = $request->status;
                     $book->puplisher_id = $request->puplisher;
-                    $book->thumbnail = $request->thumbnail_name;
+                    $book->thumbnail = $thumbnail_name;
                     $book->save();
                     
                     $book->authors()->sync($request->authors);

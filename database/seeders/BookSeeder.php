@@ -24,12 +24,12 @@ class BookSeeder extends Seeder
             (new Category)->factory(rand(1, 3))->create(['parent_id' => $parent->id]); 
         }
         
-        $puplishers = (new Puplisher)->factory(20)->create();
+        $puplishers = (new Puplisher)->factory(2)->create();
         $statuses = (new Status)->factory(2)->create();
         $authors = (new Author)->factory(20)->create();
         foreach ((new Category)->whereNotNull('parent_id')->get() as $c)
         {
-            (new Book)->factory(10)
+            (new Book)->factory(2)
             ->for((new Puplisher)->all()->random(1)->first())
             ->for((new Status)->all()->random(1)->first())
             ->hasAttached($c)

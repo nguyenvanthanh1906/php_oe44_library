@@ -9,7 +9,7 @@
             @foreach($books as $book)
                 <div class="col-lg-2 ">
                     <div class="card" >
-                        <img class="card-img-top" src="{{$book->thumbnail}}" alt="Card image" >
+                        <img class="card-img-top" src="/cimg/{{$book->thumbnail}}" alt="Card image" >
                         <div class="card-body">
                             <h6 class="card-title">{{$book->name}}</h6>
                             @if($book->amount > 0)

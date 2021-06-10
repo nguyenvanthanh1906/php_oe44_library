@@ -3,14 +3,14 @@
 @section('content')
     <div class="container">
         <h2>{{ trans('books.addbook') }}</h2>
-        <form action="{{ Route('books.update', ['book' => $book->id]) }}" method="POST" class="form-horizontal">
+        <form action="{{ Route('books.update', ['book' => $book->id]) }}" method="POST" class="form-horizontal" enctype='multipart/form-data'>
             {{ csrf_field() }}
             @method('PUT')
             <div class="form-group">
                 <label for="thumbnail" class="col-sm-3 control-label">{{ trans('books.thumbnail')}}</label>
                 <div class="col-sm-6">
-                    <input type="file" name="thumbnail" id="thumbnail" value="{{$book->thumbnail}}" class="form-control @error('thumbnail') is-invalid @enderror">
-                    <img id="imgThumbnail" src="{{$book->thumbnail}}" alt="Thumbnail" />
+                    <input type="file" name="thumbnail" id="thumbnail"  class="form-control @error('thumbnail') is-invalid @enderror">
+                    <img id="imgThumbnail" src="/cimg/{{$book->thumbnail}}" alt="Thumbnail" />
                     @error('thumbnail')
                         <div class="error">{{ $message }}</div>
                     @enderror

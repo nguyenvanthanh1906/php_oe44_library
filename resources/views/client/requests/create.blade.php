@@ -9,7 +9,7 @@
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-2">
-                            <img src="{{$book->thumbnail}}" alt="">
+                            <img src="/cimg/{{$book->thumbnail}}" alt="">
                         </div>
                         <div class="col-sm-10">
                             <h4>{{trans('request.bookname')}} : </h4><p>{{$book->name}}</p>

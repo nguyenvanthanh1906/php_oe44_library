@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2>{{ trans('books.addbook') }}</h2>
-        <form action="{{ Route('books.store') }}" method="POST" class="form-horizontal">
+        <form action="{{ Route('books.store') }}" method="POST" class="form-horizontal" enctype='multipart/form-data'>
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="thumbnail" class="col-sm-3 control-label">{{ trans('books.thumbnail')}}</label>

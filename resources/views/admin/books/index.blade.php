@@ -22,7 +22,7 @@
                 @foreach ($books as $key=>$book)
                 <tr>
                     <td>{{$key + 1}}</td>
-                    <td><img src="{{$book->thumbnail}}" alt=""></td>
+                    <td><img src="/cimg/{{$book->thumbnail}}" alt=""></td>
                     <td>{{$book->name}}</td>
                     <td>{{$book->amount}}</td>
                     <td>{{$book->status->name}}</td>

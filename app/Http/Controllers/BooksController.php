@@ -52,7 +52,8 @@ class BooksController extends Controller
         $thumbnail=$request->thumbnail;
         $thumbnail_name=$thumbnail->getClientOriginalName();
         $thumbnail->move('cimg',$thumbnail_name);
-        $trans = DB::transaction(function () use ($request, $thumbnail_name) {
+        DB::beginTransaction();
+        try {
             $book = Book::create([
                 'name' => $request->name,
                 'amount' => $request->amount,
@@ -60,20 +61,16 @@ class BooksController extends Controller
                 'puplisher_id' => $request->puplisher,
                 'thumbnail' => $thumbnail_name,
             ]);
-            if($book){
-                $book->authors()->attach($request->authors);
-                $book->categories()->attach($request->categories);
-            }
+            
 
-            return $book;
-        });
-        if($trans){
+            DB::commit();
+        } catch (\Exception $e) {   
+            DB::rollBack();
 
-            return redirect()->route('books.index')->with('success', trans('books.successcreate')); 
-        } else {
+            return redirect()->route('books.index')->with('error', trans('books.failcreate')); 
+        } 
 
-            return redirect()->route('books.index')->with('success', trans('books.failcreate')); 
-        }
+        return redirect()->route('books.index')->with('success', trans('books.successcreate'));  
     }
 
     /**

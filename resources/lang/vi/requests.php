@@ -1,10 +1,13 @@
 <?php
 
 return [
+    'list' => 'Danh sách yêu cầu',
     'create' => 'Tạo yêu cầu ',
     'borrowday' => 'Ngày mượn',
     'returnday' => 'Ngày trả',
     'bookname' => 'Tên sách',
+    'username' => 'Tên người mượn',
+    'isapprove' => 'Chấp nhận',
     'exit' => 'Yêu cầu đã tồn tại',
     'createsuccess' => 'Yêu cầu mượn sách thành công',
     'deletesuccess' => 'Xóa yêu cầu thành công',

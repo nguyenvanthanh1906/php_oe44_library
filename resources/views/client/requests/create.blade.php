@@ -2,7 +2,7 @@
 @section('content')  
     <div class="container">
         @include('common.notification')
-        <h2>{{ trans('request.create') }}</h2>
+        <h2>{{ trans('requests.create') }}</h2>
         <form action="{{route('request.store')}}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             <div class="form-group">
@@ -12,7 +12,7 @@
                             <img src="/cimg/{{$book->thumbnail}}" alt="">
                         </div>
                         <div class="col-sm-10">
-                            <h4>{{trans('request.bookname')}} : </h4><p>{{$book->name}}</p>
+                            <h4>{{trans('requests.bookname')}} : </h4><p>{{$book->name}}</p>
                             <h4>{{trans('books.authors')}} : </h4>
                             @foreach($book->authors as $author)
                                 <p>{{$author->name}}</p>
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <div class="form-group">
-                    <label for="task" class="col-sm-3 control-label">{{ trans('request.borrowday')}}</label>
+                    <label for="task" class="col-sm-3 control-label">{{ trans('requests.borrowday')}}</label>
                     <input id="datepickerborrow" name="borrowday" type="date"/>
                     @error('borrowday')
                         <div class="error">{{ $message }}</div>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <div class="form-group">
-                    <label for="task" class="col-sm-3 control-label">{{ trans('request.returnday')}}</label>
+                    <label for="task" class="col-sm-3 control-label">{{ trans('requests.returnday')}}</label>
                     <input id="datepickerpay" name="returnday" type="date" />
                     @error('returnday')
                         <div class="error">{{ $message }}</div>
@@ -43,7 +43,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-plus"></i> {{ trans('request.create')}}
+                        <i class="fa fa-plus"></i> {{ trans('requests.create')}}
                     </button>
                 </div>
             </div>

@@ -1,10 +1,13 @@
 <?php
 
 return [
+    'list' => 'Request list',
     'create' => 'Create request',
     'borrowday' => 'Borrow day',
     'returnday' => 'Return day',
     'bookname' => 'Book name',
+    'username' => 'User name',
+    'isapprove' => 'Approved',
     'exit' => 'Request is already exit',
     'createsuccess' => 'Create request sucessfully',
     'deletesuccess' => 'Delete request successfully',

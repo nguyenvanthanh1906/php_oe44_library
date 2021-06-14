@@ -9,10 +9,10 @@
                 <tr>
                     <th>#</th>
                     <th>{{ trans('books.thumbnail') }}</th>
-                    <th>{{ trans('books.name') }}</th>
-                    <th>{{ trans('users.name') }}</th>
+                    <th>{{ trans('requests.bookname') }}</th>
+                    <th>{{ trans('requests.username') }}</th>
                     <th>{{ trans('requests.borrowday') }}</th>
-                    <th>{{ trans('requests.payday') }}</th>
+                    <th>{{ trans('requests.returnday') }}</th>
                     <th>{{ trans('requests.isapprove') }}</th>
                     <th>{{ trans('books.action') }}</th>
                 </tr>

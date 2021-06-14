@@ -7,7 +7,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>{{ trans('books.thumbnail') }}</th>
                     <th>{{ trans('books.name') }}</th>
                     <th>{{ trans('users.name') }}</th>
@@ -18,9 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($requests as $key=>$request)
                 <tr>
-                    <td>{{$key + 1}}</td>
                     <td><img src="/cimg/{{$request->book->thumbnail}}" alt=""></td>
                     <td>{{$request->book->name}}</td>
                     <td>{{$request->user->name}}</td>
@@ -48,7 +45,6 @@
                                         <form action="{{Route('requests.destroy', ['request' => $request->id])}}" method="post">
                                             {{ csrf_field() }}
                                             @method('DELETE')
-                                            <input type="hidden" name="isApprove" value="{{$isApprove}}">
                                             <button type="submit" class="btn btn-danger">{{ trans('requests.delete') }}</button>
                                         </form>
                                     </div>
@@ -57,9 +53,7 @@
                         </div>
                     </td>
                 </tr>
-                @endforeach
             </tbody>
         </table>
-            {{$requests->links()}}
     </div>
 @endsection

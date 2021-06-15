@@ -27,6 +27,18 @@ class CRequestsController extends Controller
         }
     }
 
+    public function showone($id)
+    {
+        $crequest = Crequest::find($id);
+        if ($crequest) {
+
+            return view('client.requests.showone', ['request' => $crequest]);
+        } else {
+            
+            return redirect()->back()->with('error', trans('requests.noexit'));
+        }
+    }
+
     public function store(CRequestsRequest $request)
     {
         $request->all();
@@ -57,7 +69,7 @@ class CRequestsController extends Controller
                 if($trans)
                 {
                     $users = User::where('role_id', 1)->get(); 
-                    $data = ['user' => Auth::user()->name, 'book' => $book->name];
+                    $data = ['user' => Auth::user()->name, 'book' => $book->name, 'title' => 'New request', 'link' => route('requests.showone', $trans->id)];
                     foreach($users as $user)
                     {
                         $user->notify(new CRequestNotification($data));

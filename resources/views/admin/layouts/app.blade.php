@@ -57,14 +57,16 @@
                             @endif
                         @else
                             <li class="nav-item dropdown dropdown-notifications">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Notification<span class="caret"></span>
+                                <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="{{asset('/img/bell.png')}}" alt="">
+                                    <span class="badge badge-light" id="count-notification">{{Auth::user()->unreadNotifications->count()}}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right menu-notification" aria-labelledby="navbarDropdown">
                                     @foreach (Auth::user()->unreadNotifications as $notification)
-                                            <a class="dropdown-item" href="#" >
-                                                <span>{{ $notification->data['user']}} request {{$notification->data['book']}}</span>
-                                            </a>
+                                        <a class="dropdown-item card" href="{{$notification->data['link']}}">
+                                            <h5 class="card-title">{{$notification->data['title']}}</h5>
+                                            <p class="card-text">{{$notification->data['user']}} -> {{$notification->data['book']}}</p>
+                                        </a>
                                     @endforeach
                                 </div>
                             </li>
@@ -99,6 +101,7 @@
     </div>
     <script type="text/javascript">
         var key = '{{env("PUSHER_APP_KEY")}}'
+        var count = {{Auth::user()->unreadNotifications->count()}}
     </script>
     <script type="text/javascript" src="{{asset('js/noti.js')}}"></script>
 </body>

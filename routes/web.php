@@ -39,11 +39,13 @@ Route::group(['middleware' => ['locale', 'isadmin', ], 'prefix' => 'admin'], fun
     Route::resource('requests', RequestsController::class)->only('destroy');
     Route::get('accept/{id}', [RequestsController::class, 'accept'])->name('accept.request');
     Route::get('all/accepted={isApprove}', [RequestsController::class, 'all'])->name('requests.all');
+    Route::get('request/{id}', [RequestsController::class, 'showone'])->name('requests.showone');
 });
 
 Route::group(['middleware' => ['locale', 'isuser', ]], function() {
     Route::get('request/create/{book}', [CRequestsController::class, 'create'])->name('request.create');
     Route::post('request/store', [CRequestsController::class, 'store'])->name('request.store');
+    Route::get('request/{id}', [CRequestsController::class, 'showone'])->name('request.showone');
 });
 Route::group(['middleware' => 'locale'], function() {
     Route::get('all-books/{category}', [CBooksController::class, 'index'])->name('client.books');

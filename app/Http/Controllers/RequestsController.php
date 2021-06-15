@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\CRequest;
 use App\Notifications\CRequestNotification;
 use Pusher\Pusher;
+use Illuminate\Support\Facades\Auth;
 
 class RequestsController extends Controller
 {
@@ -22,9 +23,21 @@ class RequestsController extends Controller
         return view('admin.requests.index', compact('requests', 'isApprove'));
     }
 
+    public function showone($id)
+    {
+        $crequest = Crequest::find($id);
+        if ($crequest) {
+
+            return view('admin.requests.showone', ['request' => $crequest]);
+        } else {
+            
+            return redirect()->back()->with('error', trans('requests.noexit'));
+        }
+    }
+
     public function destroy(Request $request, $id)
     {
-        $crequest = (new CRequest)->where('id', $id)->first();
+        $crequest = Crequest::find($id);
         if ($crequest) {
             $crequest->delete();
 
@@ -37,7 +50,7 @@ class RequestsController extends Controller
 
     public function accept($id)
     {
-        $request = (new CRequest)->where('id', $id)->first();
+        $request = Crequest::find($id);
 
         if($request)
         {
@@ -45,7 +58,7 @@ class RequestsController extends Controller
             $request->save();
 
             $user = $request->user; 
-            $data = ['book' => $request->book->name];
+            $data = ['book' => $request->book->name, 'title' => 'Accepted', 'user' => Auth::user()->name, 'link' => route('request.showone', [$request->id])];
             $user->notify(new CRequestNotification($data));
             $options = array(
                 'cluster' => 'ap1',
@@ -58,7 +71,7 @@ class RequestsController extends Controller
                 $options
             );
     
-            $pusher->trigger('NotificationEvent', 'send-message', $data);
+            $pusher->trigger('NotificationEvent', 'send-message-client', $data);
             
             return redirect()->back();
         } else {

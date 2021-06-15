@@ -20,6 +20,7 @@ class CRequestsController extends Controller
         $book = Book::find($request->book);
         if($book->amount > 0)
         {
+            
             return view('client.requests.create', compact('book'));
         } else {
 
@@ -49,9 +50,10 @@ class CRequestsController extends Controller
             if($exit_request)
             {
 
-                return redirect()->route('client.books')->with('error', trans('request.exit'));
+                return redirect()->route('client.books')->with('error', trans('requests.exit'));
             } else {
-                $trans = DB::transaction(function () use ($request, $book) {
+                DB::beginTransaction();
+                try {
                     $crequest = CRequest::create([
                         'book_id' => $request->book,
                         'user_id' => Auth::id(),
@@ -62,14 +64,9 @@ class CRequestsController extends Controller
 
                     $book->amount = $book->amount - 1;
                     $book->save();
-                    
-                    return $crequest;
-                });
-                
-                if($trans)
-                {
+
                     $users = User::where('role_id', 1)->get(); 
-                    $data = ['user' => Auth::user()->name, 'book' => $book->name, 'title' => 'New request', 'link' => route('requests.showone', $trans->id)];
+                    $data = ['user' => Auth::user()->name, 'book' => $book->name, 'title' => 'New request', 'link' => route('requests.showone', $crequest->id)];
                     foreach($users as $user)
                     {
                         $user->notify(new CRequestNotification($data));
@@ -87,12 +84,15 @@ class CRequestsController extends Controller
                     );
 
                     $pusher->trigger('NotificationEvent', 'send-message', $data);
-
-                    return redirect()->route('client.books')->with('success', trans('request.createsuccess'));
-                } else {
-
-                    return redirect()->route('client.books')->with('error', trans('request.createfail'));
-                }
+                    
+                    DB::commit();
+                } catch (\Exception $e) {   
+                    DB::rollBack();
+   
+                    return redirect()->route('client.books')->with('error', trans('requests.createfail'));
+                } 
+    
+                    return redirect()->route('client.books')->with('success', trans('requests.createsuccess'));
             }
         } else {
 

@@ -6,8 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 
-class CRequestNotification extends Notification
+class CRequestNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -32,7 +33,7 @@ class CRequestNotification extends Notification
     public function via($notifiable)
     {
 
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -45,9 +46,10 @@ class CRequestNotification extends Notification
     {
 
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->from(Auth::user()->email, $this->data['user'])
+            ->line($this->data['title'])
+            ->line($this->data['user'].' -> '.$this->data['book'])
+            ->action('View', url($this->data['link']));
     }
 
     /**

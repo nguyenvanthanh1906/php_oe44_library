@@ -7,6 +7,7 @@ use App\Models\CRequest;
 use App\Notifications\CRequestNotification;
 use Pusher\Pusher;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class RequestsController extends Controller
 {
@@ -54,26 +55,36 @@ class RequestsController extends Controller
 
         if($request)
         {
-            $request->is_approve = true;
-            $request->save();
+            DB::beginTransaction();
+            try {
+                $request->is_approve = true;
+                $request->save();
 
-            $user = $request->user; 
-            $data = ['book' => $request->book->name, 'title' => 'Accepted', 'user' => Auth::user()->name, 'link' => route('request.showone', [$request->id])];
-            $user->notify(new CRequestNotification($data));
-            $options = array(
-                'cluster' => 'ap1',
-                'encrypted' => true
-            );
-            $pusher = new Pusher(
-                env('PUSHER_APP_KEY'),
-                env('PUSHER_APP_SECRET'),
-                env('PUSHER_APP_ID'),
-                $options
-            );
-    
-            $pusher->trigger('NotificationEvent', 'send-message-client', $data);
+                $user = $request->user; 
+                $data = ['book' => $request->book->name, 'title' => 'Accepted', 'user' => Auth::user()->name, 'link' => route('request.showone', [$request->id])];
+                $user->notify(new CRequestNotification($data));
+                $options = array(
+                    'cluster' => 'ap1',
+                    'encrypted' => true
+                );
+                $pusher = new Pusher(
+                    env('PUSHER_APP_KEY'),
+                    env('PUSHER_APP_SECRET'),
+                    env('PUSHER_APP_ID'),
+                    $options
+                );
+        
+                $pusher->trigger('NotificationEvent', 'send-message-client', $data);
+
+                DB::commit();
+            } catch (\Exception $e) {   
+                DB::rollBack();
+
+                return redirect()->back()->with('error', trans('requests.createfail'));
+            } 
+
+                return redirect()->back()->with('success', trans('requests.createsuccess'));
             
-            return redirect()->back();
         } else {
 
             return redirect()->route('requests.index')->with('success', trans('requests.noexit'));

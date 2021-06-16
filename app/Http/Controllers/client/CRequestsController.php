@@ -66,7 +66,7 @@ class CRequestsController extends Controller
                     $book->save();
 
                     $users = User::where('role_id', 1)->get(); 
-                    $data = ['user' => Auth::user()->name, 'book' => $book->name, 'title' => 'New request', 'link' => route('requests.showone', $crequest->id)];
+                    $data = ['user' => Auth::user()->name, 'content' => Auth::user()->name.' -> '.$book->name,'time' => date("d-m-Y H:i:s"), 'title' => 'New request', 'link' => route('requests.showone', $crequest->id)];
                     foreach($users as $user)
                     {
                         $user->notify(new CRequestNotification($data));
@@ -88,7 +88,7 @@ class CRequestsController extends Controller
                     DB::commit();
                 } catch (\Exception $e) {   
                     DB::rollBack();
-   
+   dd($e);
                     return redirect()->route('client.books')->with('error', trans('requests.createfail'));
                 } 
     

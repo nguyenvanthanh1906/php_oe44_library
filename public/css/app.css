@@ -54,6 +54,13 @@
 
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
   
+  .read {
+    background-color: #3c98fa;
+  }
+
+  .read:hover {
+    background-color: #0069d9;
+  }
 body {
     margin: 0;
     font-family: "Lato", sans-serif;

@@ -25,7 +25,7 @@ class UserFactory extends Factory
 
         return [
             'name' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'thanhnguyenvanpro123@gmail.com',
             'email_verified_at' => now(),
             'role_id' => 1,
             'password' => bcrypt('12345678'), // password

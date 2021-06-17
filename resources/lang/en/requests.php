@@ -15,4 +15,8 @@ return [
     'borrowdaynotlately' => 'Borrow day can not later than return day',
     'notearlythancurrentday' => 'Borrow day and return day can not early than current day',
     'returndaynotearly' => 'Return day can not early than borrow day',
+    'monthlystatistics' => 'Monthly statistics',
+    'month' => 'Choose month',
+    'weeklystatistics' => 'Weekly statistics',
+    'week' => 'Choose week',
 ];

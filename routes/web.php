@@ -7,6 +7,7 @@ use App\Http\Controllers\PuplishersController;
 use App\Http\Controllers\StatusesController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\client\CBooksController;
 use App\Http\Controllers\client\CRequestsController;
 use App\Http\Controllers\RequestsController;
@@ -36,6 +37,9 @@ Route::group(['middleware' => ['locale', 'isadmin', ], 'prefix' => 'admin'], fun
     Route::resource('books', BooksController::class);
     Route::resource('puplishers', PuplishersController::class);
     Route::resource('statuses', StatusesController::class);
+    Route::resource('charts', ChartsController::class);
+    Route::get('charts/week/{w}', [ChartsController::class, 'week'])->name('charts.week');
+    Route::get('charts/month/{m}', [ChartsController::class, 'month'])->name('charts.month');
     Route::resource('requests', RequestsController::class)->only('destroy');
     Route::get('accept/{id}', [RequestsController::class, 'accept'])->name('accept.request');
     Route::get('all/accepted={isApprove}', [RequestsController::class, 'all'])->name('requests.all');

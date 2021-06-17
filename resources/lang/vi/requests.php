@@ -15,4 +15,8 @@ return [
     'borrowdaynotlately' => 'Ngày mượn không được trễ hơn ngày trả',
     'notearlythancurrentday' => 'Ngày mượn và ngày trả không được sớm hơn ngày hiện tại',
     'returndaynotearly' => 'Ngày trả không được sớm hơn ngày mượn',
+    'monthlystatistics' => 'Thống kê theo tháng',
+    'month' => 'Chọn tháng',
+    'weeklystatistics' => 'Thống kê theo tuần',
+    'week' => 'Chọn tuần',
 ];

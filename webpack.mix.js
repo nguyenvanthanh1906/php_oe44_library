@@ -32,6 +32,10 @@ mix.js(['resources/js/app.js',
 .copy(['resources/js/pusher.js',
 ], 'public/js/pusher.js')
 .copy(['resources/js/ajax.js',
-], 'public/js/ajax.js');
+], 'public/js/ajax.js')
+.copy(['resources/js/chart.js',
+], 'public/js/chart.js')
+.js(['resources/js/chart.min.js',
+], 'public/js/chart.min.js');
 mix.copyDirectory('resources/fonts', 'public/fonts');
 mix.copyDirectory('resources/img', 'public/img');   

@@ -15,4 +15,5 @@ return [
     'borrowdaynotlately' => 'Borrow day can not later than return day',
     'notearlythancurrentday' => 'Borrow day and return day can not early than current day',
     'returndaynotearly' => 'Return day can not early than borrow day',
+    'acceptedsuccess' => 'Accept request successfully',
 ];

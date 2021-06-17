@@ -61,7 +61,7 @@ class RequestsController extends Controller
                 $request->save();
 
                 $user = $request->user; 
-                $data = ['book' => $request->book->name, 'title' => 'Accepted', 'user' => Auth::user()->name, 'link' => route('request.showone', [$request->id])];
+                $data = ['user' => Auth::user()->name, 'content' => Auth::user()->name.' -> '.$request->book->name,'time' => date("d-m-Y H:i:s"), 'title' => 'Accepted', 'link' => route('request.showone', [$request->id])];
                 $user->notify(new CRequestNotification($data));
                 $options = array(
                     'cluster' => 'ap1',

@@ -6,9 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
 
-class CRequestNotification extends Notification implements ShouldQueue
+class NotAcceptedRequestsNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -20,7 +19,6 @@ class CRequestNotification extends Notification implements ShouldQueue
      */
     public function __construct($data)
     {
-        
         $this->data = $data;
     }
 
@@ -33,7 +31,7 @@ class CRequestNotification extends Notification implements ShouldQueue
     public function via($notifiable)
     {
 
-        return ['database', 'mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -46,8 +44,7 @@ class CRequestNotification extends Notification implements ShouldQueue
     {
 
         return (new MailMessage)
-            ->from(Auth::user()->email, $this->data['user'])
-            ->line($this->data['title'])
+            ->from('thanhnguyenvanpro123@gmail.com', 'Library')
             ->line($this->data['content'])
             ->line($this->data['time'])
             ->action('View', url($this->data['link']));

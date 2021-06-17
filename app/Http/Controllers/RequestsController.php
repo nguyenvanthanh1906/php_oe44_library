@@ -83,11 +83,11 @@ class RequestsController extends Controller
                 return redirect()->back()->with('error', trans('requests.createfail'));
             } 
 
-                return redirect()->back()->with('success', trans('requests.createsuccess'));
+                return redirect()->back()->with('success', trans('requests.acceptedsuccess'));
             
         } else {
 
-            return redirect()->route('requests.index')->with('success', trans('requests.noexit'));
+            return redirect()->route('requests.index')->with('error', trans('requests.noexit'));
         }
     }
 }

@@ -4,6 +4,8 @@ return [
     'limit' => 10,
     
     'limit_client' => 12,
+
+    'limit_notifications' => 5,
     /*
     |--------------------------------------------------------------------------
     | Application Name

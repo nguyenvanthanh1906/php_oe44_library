@@ -11,7 +11,7 @@ channel.bind('send-message-client', function(data) {
         <p class="card-text">${data.time}</p>
     </a>
     `;
-    $('.menu-notification').prepend(newNotificationHtml);
+    $('.menu-body').prepend(newNotificationHtml);
     $('.modal-body').prepend(newNotificationHtml);
     count = count + 1
     document.getElementById('count-notification').innerHTML = count

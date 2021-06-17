@@ -62,18 +62,20 @@
                                     <span class="badge badge-light" id="count-notification">{{Auth::user()->unreadNotifications->count()}}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right menu-notification" aria-labelledby="navbarDropdown">
-                                    @for ($i = 0; $i <= 4; $i++)
-                                        @if (isset(Auth::user()->notifications[$i]))
-                                            <a class="dropdown-item card @if(!Auth::user()->notifications[$i]->read_at) read @endif" href="{{Auth::user()->notifications[$i]->data['link']}}">
-                                                <h5 class="card-title">{{Auth::user()->notifications[$i]->data['title']}}</h5>
-                                                <p class="card-text">{{Auth::user()->notifications[$i]->data['content']}}</p>
-                                                <p class="card-text">{{Auth::user()->notifications[$i]->data['time']}}</p>
-                                            </a>
-                                        @endif
-                                    @endfor
-                                    <button class="dropdown-item card" id="all" data-toggle="modal" data-target="#myModal">
-                                        <p class="card-text">View all</p>
-                                    </button>
+                                    <div class="menu-body">
+                                       @for ($i = 0; $i < config('app.limit_notifications') ; $i++)
+                                            @if (isset(Auth::user()->notifications[$i]))
+                                                <a class="dropdown-item card notification-item @if(!Auth::user()->notifications[$i]->read_at) read @endif" href="{{Auth::user()->notifications[$i]->data['link']}}">
+                                                    <h5 class="card-title">{{Auth::user()->notifications[$i]->data['title']}}</h5>
+                                                    <p class="card-text">{{Auth::user()->notifications[$i]->data['content']}}</p>
+                                                    <p class="card-text">{{Auth::user()->notifications[$i]->data['time']}}</p>
+                                                </a>
+                                            @endif
+                                        @endfor 
+                                    </div>
+                                    <a class="dropdown-item" id="all" data-toggle="modal" data-target="#myModal">
+                                        <p class="card-text all-text" >View all</p>
+                                    </a>
                                 </div>
                                 <div id="myModal" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
@@ -83,17 +85,15 @@
                                             </div>
                                             <div class="modal-body">
                                                 @foreach (Auth::user()->notifications as $noti)
-                                                    @if (isset(Auth::user()->notifications[$i]))
-                                                        <a class="dropdown-item card @if(!$noti->read_at) read @endif" href="{{$noti->data['link']}}">
-                                                            <h5 class="card-title">{{$noti->data['title']}}</h5>
-                                                            <p class="card-text">{{$noti->data['content']}}</p>
-                                                            <p class="card-text">{{$noti->data['time']}}</p>
-                                                        </a>
-                                                    @endif
+                                                    <a class="dropdown-item notification-item card @if(!$noti->read_at) read @endif" href="{{$noti->data['link']}}">
+                                                        <h5 class="card-title">{{$noti->data['title']}}</h5>
+                                                        <p class="card-text">{{$noti->data['content']}}</p>
+                                                        <p class="card-text">{{$noti->data['time']}}</p>
+                                                    </a>
                                                 @endforeach
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>

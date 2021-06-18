@@ -19,4 +19,5 @@ return [
     'month' => 'Choose month',
     'weeklystatistics' => 'Weekly statistics',
     'week' => 'Choose week',
+    'acceptedsuccess' => 'Accept request successfully',
 ];

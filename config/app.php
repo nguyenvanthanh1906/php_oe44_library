@@ -6,6 +6,9 @@ return [
     'limit_client' => 12,
 
     'limit_chart' => 5,
+
+    'limit_notifications' => 5,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

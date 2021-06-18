@@ -19,4 +19,5 @@ return [
     'month' => 'Chọn tháng',
     'weeklystatistics' => 'Thống kê theo tuần',
     'week' => 'Chọn tuần',
+    'acceptedsuccess' => 'Chấp nhận yêu cầu thành công',
 ];

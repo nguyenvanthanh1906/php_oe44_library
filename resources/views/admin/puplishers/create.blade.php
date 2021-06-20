@@ -1,7 +1,7 @@
 @extends('admin.layouts.app', ['page' => 'puplishers'])
 
 @section('content')
-    <div class="container">
+    <div class="container main">
         <h2>{{ trans('puplishers.addpuplisher') }}</h2>
         <form action="{{ Route('puplishers.store') }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}

@@ -12,9 +12,16 @@
     "/fonts/gijgo-material.svg": "/fonts/gijgo-material.svg",
     "/fonts/gijgo-material.ttf": "/fonts/gijgo-material.ttf",
     "/fonts/gijgo-material.woff": "/fonts/gijgo-material.woff",
+    "/img/application.png": "/img/application.png",
+    "/img/battery-level.png": "/img/battery-level.png",
     "/img/bell.png": "/img/bell.png",
+    "/img/book.png": "/img/book.png",
     "/img/check.png": "/img/check.png",
     "/img/crossed.png": "/img/crossed.png",
+    "/img/house.png": "/img/house.png",
+    "/img/options.png": "/img/options.png",
     "/img/united-states.png": "/img/united-states.png",
-    "/img/vietnam.png": "/img/vietnam.png"
+    "/img/vietnam.png": "/img/vietnam.png",
+    "/img/warehouse.png": "/img/warehouse.png",
+    "/img/writer.png": "/img/writer.png"
 }

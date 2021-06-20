@@ -1,7 +1,7 @@
 @extends('admin.layouts.app', ['page' => 'authors'])
 
 @section('content')
-    <div class="container">
+    <div class="container main">
         <h2>{{ trans('authors.addauthor') }}</h2>
         <form action="{{ Route('authors.update', ['author' => $author->id,]) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}

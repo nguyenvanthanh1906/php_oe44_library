@@ -25,10 +25,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm navbar-header">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Library') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -77,27 +77,6 @@
                                         <p class="card-text all-text" >View all</p>
                                     </a>
                                 </div>
-                                <div id="myModal" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">All notifications</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                @foreach (Auth::user()->notifications as $noti)
-                                                    <a class="dropdown-item notification-item card @if(!$noti->read_at) read @endif" href="{{$noti->data['link']}}">
-                                                        <h5 class="card-title">{{$noti->data['title']}}</h5>
-                                                        <p class="card-text">{{$noti->data['content']}}</p>
-                                                        <p class="card-text">{{$noti->data['time']}}</p>
-                                                    </a>
-                                                @endforeach
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -120,10 +99,38 @@
                     </ul>
                 </div>
             </div>
+            <div class="float-right">    
+                <a href="{!! route('user.change-language', ['vi']) !!}" >
+                    <img src="{{asset('img/vietnam.png')}}" alt="">
+                </a>
+                <a href="{!! route('user.change-language', ['en']) !!}" >
+                    <img src="{{asset('img/united-states.png')}}" alt="">
+                </a>      
+            </div>
         </nav>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">All notifications</h4>
+                    </div>
+                    <div class="modal-body">
+                        @foreach (Auth::user()->notifications as $noti)
+                            <a class="dropdown-item notification-item card @if(!$noti->read_at) read @endif" href="{{$noti->data['link']}}">
+                                <h5 class="card-title">{{$noti->data['title']}}</h5>
+                                <p class="card-text">{{$noti->data['content']}}</p>
+                                <p class="card-text">{{$noti->data['time']}}</p>
+                            </a>
+                        @endforeach
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <main class="">
             @include('common.sidebar')
-            @include('common.language')
             @yield('content')
         </main>
     </div>

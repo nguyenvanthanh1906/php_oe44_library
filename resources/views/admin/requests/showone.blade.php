@@ -1,7 +1,7 @@
 @extends('admin.layouts.app', ['page' => 'requests'])
 
 @section('content')
-    <div class="container">
+    <div class="container main">
         @include('common.notification')
         <h2>{{ trans('requests.list') }}</h2>
         <table class="table">

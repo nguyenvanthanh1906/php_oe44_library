@@ -1,8 +1,8 @@
-<div class="sidebar">
+<div class="sidebar sidebar-admin">
     <a href="/all-books/all" class="adrop">All</a>
     @foreach($categories as $category)
         @if($category->parent_id == null)
-            <div class="dropdown">
+            <div class="dropdown dropdown-menu-sidebar">
                 <a class="adrop" href="/all-books/{{$category->name}}">{{$category->name}}</a>
                 <div class="dropdown-content">
                     @foreach($category->childrent as $child)

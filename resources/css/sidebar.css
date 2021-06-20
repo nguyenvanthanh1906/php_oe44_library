@@ -1,64 +1,78 @@
 body {
-    margin: 0;
-    font-family: "Lato", sans-serif;
-  }
-  
-  .sidebar {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
-  }
-  
-  .sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-  }
-   
-  .sidebar a.active {
-    background-color: #04AA6D;
-    color: white;
-    pointer-events: none;
-  }
-
-  .sidebar a.active-pointer {
-    background-color: #04AA6D;
-    color: white;
-  }
-  
-  .sidebar a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-  }
-  
-  div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-  }
-  
-  @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
-  }
-  
-  @media screen and (max-width: 400px) {
-    .sidebar a {
-      text-align: center;
-      float: none;
-    }
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+.dropdown-menu-sidebar {
+  background-color: #5a6cb3!important;
+  width: 100%;
 }
 
-  .error {
-    color: red;
-  } 
+.dropdown-menu {
+  background-color: #fefeff;
+}
+.dropdown-item-sidebar:hover {
+  font-size: 150%;
+  transition: 0.4s;
+}
+.sidebar-admin {
+  margin-top: 56px!important;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #7386D5;
+  position: fixed;
+  height: 100%;
+  color: #fff;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: #fff;
+  padding: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #5a6cb3;
+  color: white;
+  pointer-events: none;
+}
+
+.sidebar a.active-pointer {
+  background-color: #5a6cb3;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #5a6cb3;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.error {
+  color: red;
+} 

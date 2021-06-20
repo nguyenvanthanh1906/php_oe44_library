@@ -1,7 +1,7 @@
 @extends('admin.layouts.app', ['page' => 'authors'])
 
 @section('content')
-    <div class="container">
+    <div class="container main">
         @include('common.notification')
         <h2>{{ trans('authors.authorslist') }}</h2>
         <a href="{{Route('authors.create')}}" class="btn btn-primary float-right">{{ trans('authors.newauthor')}}</a>

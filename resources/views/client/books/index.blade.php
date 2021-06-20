@@ -2,13 +2,13 @@
 
 @section('content')  
 @include('client.common.sidebar', ['categories' => $categories])
-    <div class="container">
+    <div class="container main">
         @include('common.notification')
         <h2>{{ trans('books.bookslist') }}</h2>
         <div class="row">
             @foreach($books as $book)
-                <div class="col-lg-2 ">
-                    <div class="card" >
+                <div class="col-lg-2 mb-5">
+                    <div class="card text-center rounded-lg" >
                         <img class="card-img-top" src="/cimg/{{$book->thumbnail}}" alt="Card image" >
                         <div class="card-body">
                             <h6 class="card-title">{{$book->name}}</h6>

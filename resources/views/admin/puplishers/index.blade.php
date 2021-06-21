@@ -1,7 +1,7 @@
 @extends('admin.layouts.app', ['page' => 'puplishers'])
 
 @section('content')
-    <div class="container">
+    <div class="container main">
         @include('common.notification')
         <h2>{{ trans('puplishers.puplisherslist') }}</h2>
         <a href="{{Route('puplishers.create')}}" class="btn btn-primary float-right">{{ trans('puplishers.newpuplisher')}}</a>

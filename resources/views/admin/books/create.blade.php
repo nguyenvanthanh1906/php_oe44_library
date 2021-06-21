@@ -1,7 +1,7 @@
 @extends('admin.layouts.app', ['page' => 'books'])
 
 @section('content')
-    <div class="container">
+    <div class="container main">
         <h2>{{ trans('books.addbook') }}</h2>
         <form action="{{ Route('books.store') }}" method="POST" class="form-horizontal" enctype='multipart/form-data'>
             {{ csrf_field() }}

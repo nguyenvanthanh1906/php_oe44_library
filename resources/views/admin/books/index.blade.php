@@ -1,6 +1,6 @@
 @extends('admin.layouts.app', ['page' => 'books'])
 @section('content')
-    <div class="container">
+    <div class="container main">
         @include('common.notification')
         <h2>{{ trans('books.bookslist') }}</h2>
         <a href="{{Route('books.create')}}" class="btn btn-primary float-right">{{ trans('books.newbook')}}</a>

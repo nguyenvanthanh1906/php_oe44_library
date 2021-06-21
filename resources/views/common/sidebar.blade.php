@@ -31,5 +31,5 @@
       <a class="dropdown-item dropdown-item-sidebar" href="{{route('requests.all', ['isApprove' => 0])}}">Not Accepted</a>
       <a class="dropdown-item dropdown-item-sidebar" href="{{route('requests.all', ['isApprove' => 1])}}">Accepted</a>
     </div>
-  </div>
+</div>
   

@@ -18,10 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{asset('js/jquery.js')}}"></script>
-    <script src="{{asset('js/ajax.js')}}"></script>
-    <script src="{{asset('js/pusher.js')}}"></script>
-    <script src="{{asset('js/select2.js')}}"></script>
+    <script src="{{ asset('js/jquery.js')}}"></script>
+    <script src="{{ asset('js/ajax.js')}}"></script>
+    <script src="{{ asset('js/pusher.js')}}"></script>
+    <script src="{{ asset('js/select2.js')}}"></script>
+    <script src="{{ asset('js/chart.min.js')}}"></script>
 </head>
 <body>
     <div id="app">
@@ -134,10 +135,11 @@
             @yield('content')
         </main>
     </div>
+    <script type="text/javascript" src="{{ asset('js/chart.js')}}"></script>
     <script type="text/javascript">
         var key = '{{env("PUSHER_APP_KEY")}}'
         var count = {{Auth::user()->unreadNotifications->count()}}
     </script>
-    <script type="text/javascript" src="{{asset('js/noti.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/noti.js')}}"></script>
 </body>
 </html>

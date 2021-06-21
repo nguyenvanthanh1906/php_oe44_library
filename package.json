@@ -16,8 +16,11 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
+        "chart.js": "^3.3.2",
         "gijgo": "^1.9.13",
         "jquery": "^3.6.0",
-        "popper.js": "^1.16.1"
+        "laravel-echo": "^1.10.0",
+        "popper.js": "^1.16.1",
+        "pusher-js": "^7.0.3"
     }
 }

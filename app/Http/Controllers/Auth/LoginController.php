@@ -22,7 +22,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/admin/charts';
     /**
      * Create a new controller instance.
      *

@@ -8,17 +8,23 @@ use App\Notifications\CRequestNotification;
 use Pusher\Pusher;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use App\Repositories\CRequests\CRequestRepositoryInterface;
 
 class RequestsController extends Controller
 {
-    
+    protected $crequestRepo;
+    public function __construct(CRequestRepositoryInterface $crequestRepo)
+    {
+        $this->crequestRepo = $crequestRepo;
+    }
+
     public function all($isApprove)
     {
         if($isApprove != 'both')
         {
-            $requests = (new CRequest)->where('is_approve', $isApprove)->paginate(config('app.limit'));
+            $requests = $this->crequestRepo->paginateByIsApprove($isApprove);
         } else {
-            $requests = (new CRequest)->paginate(config('app.limit'));
+            $requests = CRequest::paginate(config('app.limit'));
         }
           
         return view('admin.requests.index', compact('requests', 'isApprove'));

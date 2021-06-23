@@ -20,4 +20,6 @@ return [
     'weeklystatistics' => 'Weekly statistics',
     'week' => 'Choose week',
     'acceptedsuccess' => 'Accept request successfully',
+    'accept' => 'Accept',
+    'delete' => 'Delete',
 ];

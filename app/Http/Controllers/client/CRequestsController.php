@@ -12,9 +12,19 @@ use App\Models\User;
 use App\Http\Requests\CRequestsRequest;
 use Pusher\Pusher;
 use DB;
+use App\Repositories\CRequests\CRequestRepositoryInterface;
+use App\Repositories\Users\UserRepositoryInterface;
+
 
 class CRequestsController extends Controller
 {
+    protected $crequestRepo, $userRepo;
+    public function __construct(CRequestRepositoryInterface $crequestRepo, UserRepositoryInterface $userRepo)
+    {
+        $this->crequestRepo = $crequestRepo;
+        $this->userRepo = $userRepo;
+    }
+
     public function create(Request $request)
     {
         $book = Book::find($request->book);
@@ -43,8 +53,8 @@ class CRequestsController extends Controller
     public function store(CRequestsRequest $request)
     {
         $request->all();
-        $exit_request = CRequest::where([['book_id', $request->book], ['user_id', Auth::id()]])->first();
-        $book = Book::where('id', $request->book)->first();
+        $exit_request = $this->crequestRepo->findByBookAndUser($request->book, Auth::user()->id);
+        $book = Book::find($request->book);
         if($book->amount > 0)
         {
             if($exit_request)
@@ -65,7 +75,7 @@ class CRequestsController extends Controller
                     $book->amount = $book->amount - 1;
                     $book->save();
 
-                    $users = User::where('role_id', 1)->get(); 
+                    $users = $this->userRepo->getByRoleId(1); 
                     $data = ['user' => Auth::user()->name, 'content' => Auth::user()->name.' -> '.$book->name,'time' => date("d-m-Y H:i:s"), 'title' => 'New request', 'link' => route('requests.showone', $crequest->id)];
                     foreach($users as $user)
                     {
@@ -88,7 +98,7 @@ class CRequestsController extends Controller
                     DB::commit();
                 } catch (\Exception $e) {   
                     DB::rollBack();
-   dd($e);
+  
                     return redirect()->route('client.books')->with('error', trans('requests.createfail'));
                 } 
     

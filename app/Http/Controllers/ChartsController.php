@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CRequest;
+use App\Repositories\CRequests\CRequestRepositoryInterface;
 
 class ChartsController extends Controller
 {
+    protected $crequestRepo;
+    public function __construct(CRequestRepositoryInterface $crequestRepo)
+    {
+        $this->crequestRepo = $crequestRepo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +26,7 @@ class ChartsController extends Controller
 
     public function week($week) 
     {
-        $requests = CRequest::where('is_approve', true)->get();
+        $requests = $this->crequestRepo->getByIsApprove(true);
         $requestsOfWeek = [];
         foreach ($requests as $request) {
             if (date("W", strtotime($request->created_at)) == $week)
@@ -71,7 +77,7 @@ class ChartsController extends Controller
             $daysOfMonth[] = $i;
         }
 
-        $requests = CRequest::where('is_approve', true)->get();
+        $requests = $this->crequestRepo->getByIsApprove(true);
         $requestsOfMonth= [];
         foreach ($requests as $request) {
             if (date("m", strtotime($request->created_at)) == $month)

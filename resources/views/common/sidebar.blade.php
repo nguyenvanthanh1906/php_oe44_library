@@ -1,5 +1,5 @@
 <div class="sidebar sidebar-admin">
-    <a class="@if($page == 'home') active @endif" href="/admin">
+    <a class="@if($page == 'home') active @endif" href="/admin/charts">
         <img src="{{asset('img/house.png')}}" alt="">
         Home
     </a>
